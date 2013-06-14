@@ -88,6 +88,7 @@ public class DevelopmentSettings extends PreferenceFragment
 
     private static final String ENABLE_ADB = "enable_adb";
     private static final String KEEP_SCREEN_ON = "keep_screen_on";
+    private static final String KEEP_SCREEN_ALWAYS = "keep_screen_always";
     private static final String ALLOW_MOCK_LOCATION = "allow_mock_location";
     private static final String HDCP_CHECKING_KEY = "hdcp_checking";
     private static final String HDCP_CHECKING_PROPERTY = "persist.sys.hdcp_checking";
@@ -149,6 +150,7 @@ public class DevelopmentSettings extends PreferenceFragment
     private Preference mBugreport;
     private CheckBoxPreference mBugreportInPower;
     private CheckBoxPreference mKeepScreenOn;
+    private CheckBoxPreference mKeepScreenAlways;
     private CheckBoxPreference mEnforceReadExternal;
     private CheckBoxPreference mAllowMockLocation;
     private PreferenceScreen mPassword;
@@ -209,6 +211,7 @@ public class DevelopmentSettings extends PreferenceFragment
         mBugreport = findPreference(BUGREPORT);
         mBugreportInPower = findAndInitCheckboxPref(BUGREPORT_IN_POWER_KEY);
         mKeepScreenOn = findAndInitCheckboxPref(KEEP_SCREEN_ON);
+        mKeepScreenAlways = findAndInitCheckboxPref(KEEP_SCREEN_ALWAYS);
         mEnforceReadExternal = findAndInitCheckboxPref(ENFORCE_READ_EXTERNAL);
         mAllowMockLocation = findAndInitCheckboxPref(ALLOW_MOCK_LOCATION);
         mPassword = (PreferenceScreen) findPreference(LOCAL_BACKUP_PASSWORD);
@@ -407,6 +410,8 @@ public class DevelopmentSettings extends PreferenceFragment
                 Settings.Secure.BUGREPORT_IN_POWER_MENU, 0) != 0);
         updateCheckBox(mKeepScreenOn, Settings.Global.getInt(cr,
                 Settings.Global.STAY_ON_WHILE_PLUGGED_IN, 0) != 0);
+        updateCheckBox(mKeepScreenAlways, Settings.Global.getInt(cr,
+                Settings.Global.STAY_ON_ALWAYS, 1) != 0);
         updateCheckBox(mEnforceReadExternal, isPermissionEnforced(READ_EXTERNAL_STORAGE));
         updateCheckBox(mAllowMockLocation, Settings.Secure.getInt(cr,
                 Settings.Secure.ALLOW_MOCK_LOCATION, 0) != 0);
@@ -1035,6 +1040,10 @@ public class DevelopmentSettings extends PreferenceFragment
                     Settings.Global.STAY_ON_WHILE_PLUGGED_IN,
                     mKeepScreenOn.isChecked() ? 
                     (BatteryManager.BATTERY_PLUGGED_AC | BatteryManager.BATTERY_PLUGGED_USB) : 0);
+        } else if (preference == mKeepScreenAlways) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STAY_ON_ALWAYS, 
+                    mKeepScreenAlways.isChecked() ? 1 : 0); 
         } else if (preference == mEnforceReadExternal) {
             if (mEnforceReadExternal.isChecked()) {
                 ConfirmEnforceFragment.show(this);
