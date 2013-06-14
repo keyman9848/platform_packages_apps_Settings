@@ -95,6 +95,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private static final String BT_HCI_SNOOP_LOG = "bt_hci_snoop_log";
     private static final String SELECT_RUNTIME_KEY = "select_runtime";
     private static final String SELECT_RUNTIME_PROPERTY = "persist.sys.dalvik.vm.lib";
+    private static final String KEEP_SCREEN_ALWAYS = "keep_screen_always";
     private static final String ALLOW_MOCK_LOCATION = "allow_mock_location";
     private static final String HDCP_CHECKING_KEY = "hdcp_checking";
     private static final String HDCP_CHECKING_PROPERTY = "persist.sys.hdcp_checking";
@@ -163,6 +164,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private CheckBoxPreference mBugreportInPower;
     private CheckBoxPreference mKeepScreenOn;
     private CheckBoxPreference mBtHciSnoopLog;
+    private CheckBoxPreference mKeepScreenAlways;
     private CheckBoxPreference mAllowMockLocation;
     private PreferenceScreen mPassword;
 
@@ -253,6 +255,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         mBugreportInPower = findAndInitCheckboxPref(BUGREPORT_IN_POWER_KEY);
         mKeepScreenOn = findAndInitCheckboxPref(KEEP_SCREEN_ON);
         mBtHciSnoopLog = findAndInitCheckboxPref(BT_HCI_SNOOP_LOG);
+        mKeepScreenAlways = findAndInitCheckboxPref(KEEP_SCREEN_ALWAYS);
         mAllowMockLocation = findAndInitCheckboxPref(ALLOW_MOCK_LOCATION);
         mPassword = (PreferenceScreen) findPreference(LOCAL_BACKUP_PASSWORD);
         mAllPrefs.add(mPassword);
@@ -468,6 +471,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                 Settings.Global.STAY_ON_WHILE_PLUGGED_IN, 0) != 0);
         updateCheckBox(mBtHciSnoopLog, Settings.Secure.getInt(cr,
                 Settings.Secure.BLUETOOTH_HCI_LOG, 0) != 0);
+        updateCheckBox(mKeepScreenAlways, Settings.Global.getInt(cr,
+                Settings.Global.STAY_ON_ALWAYS, 1) != 0);
         updateCheckBox(mAllowMockLocation, Settings.Secure.getInt(cr,
                 Settings.Secure.ALLOW_MOCK_LOCATION, 0) != 0);
         updateRuntimeValue();
@@ -1203,6 +1208,10 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                     (BatteryManager.BATTERY_PLUGGED_AC | BatteryManager.BATTERY_PLUGGED_USB) : 0);
         } else if (preference == mBtHciSnoopLog) {
             writeBtHciSnoopLogOptions();
+        } else if (preference == mKeepScreenAlways) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STAY_ON_ALWAYS, 
+                    mKeepScreenAlways.isChecked() ? 1 : 0); 
         } else if (preference == mAllowMockLocation) {
             Settings.Secure.putInt(getActivity().getContentResolver(),
                     Settings.Secure.ALLOW_MOCK_LOCATION,

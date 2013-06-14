@@ -3166,6 +3166,11 @@
     <string name="wifi_display_certification">Wireless display certification</string>
     <!-- setting Checkbox summary whether to show options for wireless display certification  -->
     <string name="wifi_display_certification_summary">Show options for wireless display certification</string>
+     <!-- Setting Checkbox title whether to keep the screen always on -->
+     <string name="keep_screen_always">Always stay awake</string>
+     <!-- setting Checkbox summary whether to keep the screen on when plugged in
+  -->
+     <string name="keep_screen_always_summary">Screen will never sleep</string>
     <!-- Setting Checkbox title whether to allow mock locations -->
     <string name="allow_mock_location">Allow mock locations</string>
     <!-- setting Checkbox summary whether to allow mock locations  -->
