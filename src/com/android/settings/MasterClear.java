@@ -21,6 +21,7 @@ import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -86,6 +87,19 @@ public class MasterClear extends Fragment {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        // Inform user that using Genymotion functionnality is a better choice
+        new AlertDialog.Builder(getActivity())
+            .setTitle(android.R.string.dialog_alert_title)
+            .setIconAttribute(android.R.attr.alertDialogIcon)
+            .setMessage(R.string.better_use_genymotion_warning)
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
     }
 
     @Override
