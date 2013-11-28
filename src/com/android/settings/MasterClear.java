@@ -20,6 +20,7 @@ import com.android.internal.os.storage.ExternalStorageFormatter;
 import com.android.internal.widget.LockPatternUtils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -83,6 +84,19 @@ public class MasterClear extends Activity {
                 .launchConfirmationActivity(request,
                         getText(R.string.master_clear_gesture_prompt),
                         getText(R.string.master_clear_gesture_explanation));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Inform user that using Genymotion functionnality is a better choice
+        new AlertDialog.Builder(this)
+            .setTitle(android.R.string.dialog_alert_title)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setMessage(R.string.better_use_genymotion_warning)
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
     }
 
     @Override

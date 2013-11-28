@@ -1475,6 +1475,8 @@
     <string name="master_clear_gesture_explanation">You must draw your unlock pattern to confirm a phone reset.</string>
     <!-- Master clear failed message -->
     <string name="master_clear_failed">No reset was performed because the System Clear service is not available.</string>
+    <!--Custom Genymotion warning -->
+    <string name="better_use_genymotion_warning">Android <b>Factory data reset</b> feature is not fully functional using Genymotion. You should rather use Genymotion <b>Reset virtual device</b> feature, available from your Genymotion virtual devices list.</string>
 
     <!-- Media Format -->
     <!-- SD card & phone storage settings screen, setting option name under Internal phone storage heading [CHAR LIMIT=25] -->
