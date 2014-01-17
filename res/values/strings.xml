@@ -1950,7 +1950,7 @@ found in the list of installed applications.</string>
     <string name="runningservicedetails_stop_dlg_text">Are you sure you want to stop this system service? If you do, some
         features of your phone may stop working correctly until you power it off
         and then on again.</string>
-    
+
     <!-- Language Settings --> <skip />
     <!-- Title of setting on main settings screen.  This item will take the user to the screen to tweak settings realted to locale and text -->
     <string name="language_settings">Language &amp; keyboard</string>
@@ -2066,6 +2066,10 @@ found in the list of installed applications.</string>
     <string name="keep_screen_on">Stay awake</string>
     <!-- setting Checkbox summary whether to keep the screen on when plugged in  -->
     <string name="keep_screen_on_summary">Screen will never sleep while charging</string>
+    <!-- Setting Checkbox title whether to keep the screen always on -->
+    <string name="keep_screen_always">Always stay awake</string>
+    <!-- setting Checkbox summary whether to keep the screen on when plugged in -->
+    <string name="keep_screen_always_summary">Screen will never sleep</string>
     <!-- Setting Checkbox title whether to allow mock locations -->
     <string name="allow_mock_location">Allow mock locations</string>
     <!-- setting Checkbox summary whether to allow mock locations  -->
@@ -2096,7 +2100,7 @@ found in the list of installed applications.</string>
 
     <!-- Used to show an amount of time in the form "s seconds" in BatteryHistory -->
     <string name="battery_history_seconds"><xliff:g id="seconds">%1$d</xliff:g>s</string>
-    
+
     <!-- XXX remove? Strings used for displaying usage statistics -->
     <string name="usage_stats_label">Usage statistics</string>
 
